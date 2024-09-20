@@ -14,10 +14,10 @@ export class ClaimService {
   submitClaim(file: File): Observable<any> {
     const formData = new FormData();
     formData.append('file',file);
-    return this.http.post('${this.apiUrl}/submit-claim/${claimId}',formData);
+    return this.http.post(`${this.apiUrl}/submit-claim/`,formData);
   }
 
   retrieveClaimStatus(claimId: string): Observable<any> {
-    return this.http.get('${this.apiUrl}/claim-status/{claimId}')
+    return this.http.get(`${this.apiUrl}/claim-status/${claimId}`)
   }
 }

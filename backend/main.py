@@ -1,13 +1,10 @@
 from fastapi import FastAPI
-
 import sys
 import os
 import logging
-
-
-# Add the parent directory of 'backend' to sys.path
 sys.path.append(os.getcwd())
 from app.routes.claim_routes import router as claims_router
+from fastapi.middleware.cors import CORSMiddleware
 
 logging.basicConfig(level=logging.INFO,format='%(name)s - %(levelname)s - %(message)s',
                     filename= 'app.log',
@@ -16,7 +13,13 @@ logger = logging.getLogger(__name__)
 
 
 app = FastAPI()
-
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["http://localhost:4200"],  # Your Angular app's URL
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 app.include_router(claims_router)
 
 if __name__ == "__main__":

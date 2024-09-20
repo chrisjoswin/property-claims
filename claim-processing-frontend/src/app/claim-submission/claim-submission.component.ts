@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { ClaimService } from '../claim.service';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-claim-submission',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './claim-submission.component.html',
   styleUrl: './claim-submission.component.css'
 })
