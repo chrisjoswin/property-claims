@@ -1,6 +1,9 @@
 from app.utils import document_processor
 from app.models.claim import Claim
 from app.utils.database import claims_collection
+from bson.objectid import ObjectId
+import logging
+logger = logging.getLogger(__name__)
 
 async def process_claim(file):
     contents = await file.read()
@@ -14,7 +17,9 @@ async def process_claim(file):
     return claim
 
 async def get_claim_status(claim_id:str):
-    claim_data = claims_collection.find_one({"_id": claim_id})
+    logger.info("claim ID: %s",claim_id)
+    claim_data = claims_collection.find_one({"_id": ObjectId(claim_id)})
+    logger.info("claim data: %s",claim_data)
     if(claim_data):
         return Claim(**claim_data)
     return None
