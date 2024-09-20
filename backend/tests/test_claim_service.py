@@ -1,6 +1,5 @@
 import pytest
-from app.services import claim_service
-from app.models.claim import Claim
+
 
 
 @pytest.mark.asyncio

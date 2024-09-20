@@ -11,7 +11,7 @@ import { CommonModule } from '@angular/common';
   styleUrl: './claim-status.component.css'
 })
 export class ClaimStatusComponent {
-  claimId: string = '';
+  claimId = '';
   claimStatus: any = null;
   constructor(private claimService: ClaimService){}
 
