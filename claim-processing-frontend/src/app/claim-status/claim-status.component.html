@@ -1,0 +1,10 @@
+<h2>Check Claim Status</h2>
+<input [(ngModel)]="claimId" placeholder="Enter Claim ID">
+<button (click)="checkStatus()">Check Status</button>
+<div *ngIf="claimStatus">
+    <h3>Claim Status</h3>
+    <p> Policy Number: {{claimStatus.policy_number}}</p>
+    <p>Description: {{claimStatus.description}} </p>
+    <p>Damage Amount: {{claimStatus.damage_amount}}</p>
+    <p>Status: {{claimStatus.status}}</p>
+</div>
