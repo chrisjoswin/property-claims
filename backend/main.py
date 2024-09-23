@@ -10,7 +10,8 @@ sys.path.append(os.getcwd())
 
 logging.basicConfig(
     level=logging.INFO,
-    format="%(name)s - %(levelname)s - %(message)s",
+    format='%(asctime)s.%(msecs)03d %(levelname)s %(module)s - %(funcName)s: %(message)s',
+    datefmt='%Y-%m-%d %H:%M:%S',
     filename="app.log",
     filemode="a",
 )
