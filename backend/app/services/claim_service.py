@@ -1,7 +1,5 @@
-from app.utils import document_processor
 from app.models.claim import Claim
 from app.utils.database import claims_collection
-from bson.objectid import ObjectId
 from fastapi import UploadFile
 import logging
 import boto3
