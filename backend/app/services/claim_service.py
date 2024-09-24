@@ -11,20 +11,13 @@ session = boto3.Session()
 s3_client = session.client('s3')
 
 async def process_claim(file: UploadFile):
-    # Generate a unique filename
     unique_filename = f"{uuid.uuid4()}_{file.filename}"
-    
-    # Specify your S3 bucket name
     bucket_name = "my-claims-files"
-    
-    # Construct the S3 key (path in the bucket)
     s3_key = f"claims/{unique_filename}"
 
     try:
-        # Read the file content
         file_content = await file.read()
         
-        # Upload the file to S3
         s3_client.put_object(
             Bucket=bucket_name,
             Key=s3_key,
@@ -32,7 +25,6 @@ async def process_claim(file: UploadFile):
             ContentType='application/pdf'
         )
         
-        # Return success response
         document_id = s3_key.split('/')[-1].split('.')[0]
         claim = Claim(
             id=document_id,
@@ -43,8 +35,7 @@ async def process_claim(file: UploadFile):
         )
         return claim
     except ClientError as e:
-        # Log the error (you may want to use a proper logging system)
-        print(f"Error uploading file to S3: {str(e)}")
+        logger.error(f"Error uploading file to S3: {str(e)}")
         
         # Return error response
         return {
@@ -53,7 +44,7 @@ async def process_claim(file: UploadFile):
         }
     except Exception as e:
         # Handle any other exceptions
-        print(f"Unexpected error: {str(e)}")
+        logger.error(f"Unexpected error: {str(e)}")
         return {
             "error": "An unexpected error occurred",
             "details": str(e)
