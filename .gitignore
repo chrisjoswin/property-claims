@@ -39,3 +39,4 @@ data/
 
 # Environment variables
 .env
+lamda_layer.zip
