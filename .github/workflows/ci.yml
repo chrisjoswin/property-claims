@@ -45,6 +45,8 @@ jobs:
   
   python-test:
     runs-on: ubuntu-latest
+    env:
+      MONGO_DB_URI: ${{ secrets.MONGO_DB_URI }}
     defaults:
       run:
         working-directory: ./backend
