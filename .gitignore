@@ -39,4 +39,4 @@ data/
 
 # Environment variables
 .env
-lamda_layer.zip
+lambda_layer.zip
