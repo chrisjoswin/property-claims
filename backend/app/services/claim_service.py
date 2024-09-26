@@ -56,9 +56,9 @@ async def get_claim_status(claim_id: str):
     logger.info("claim data: %s", claim_data)
     if claim_data:
         claim = Claim(id=claim_data["document_id"],
-                      policy_number=claim_data["Name"],
-                      description=claim_data["Phone Number"],
-                      damage_amount=0,
+                      policy_number=claim_data["Policy Number"],
+                      description=claim_data["Description"],
+                      damage_amount=claim_data["Damage Amount"],
                       status="Processed")
         return claim
     return None

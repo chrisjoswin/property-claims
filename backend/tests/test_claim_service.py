@@ -17,10 +17,11 @@ async def test_get_claim_status_existing_claim():
     # Mock data
     mock_claim_data = {
         "document_id": "123",
-        "Name": "POL123",
+        "Name": "John Doe",
         "Phone Number":"1234",
-        "Damage":0,
-        "Description":"this is the description"
+        "Damage Amount":0,
+        "Description":"this is the description",
+        "Policy Number": "POL123"
     }
     
     # Mock the database call
@@ -32,5 +33,5 @@ async def test_get_claim_status_existing_claim():
         assert isinstance(result, Claim)
         assert result.id == "123"
         assert result.policy_number == "POL123"
-        assert result.description == "1234"
+        assert result.description == "this is the description"
         assert result.damage_amount == 0

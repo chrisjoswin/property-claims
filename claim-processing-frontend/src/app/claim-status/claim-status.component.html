@@ -1,10 +1,30 @@
-<h2>Check Claim Status</h2>
-<input [(ngModel)]="claimId" placeholder="Enter Claim ID">
-<button (click)="checkStatus()">Check Status</button>
-<div *ngIf="claimStatus">
-    <h3>Claim Status</h3>
-    <p> Policy Number: {{claimStatus.policy_number}}</p>
-    <p>Description: {{claimStatus.description}} </p>
-    <p>Damage Amount: {{claimStatus.damage_amount}}</p>
-    <p>Status: {{claimStatus.status}}</p>
-</div>
+<div class="claim-status-container">
+    <h2 class="claim-status-title">Check Claim Status</h2>
+    <div class="claim-status-form">
+      <input [(ngModel)]="claimId" placeholder="Enter Claim ID" class="claim-status-input">
+      <button (click)="checkStatus()" class="claim-status-button">Check Status</button>
+    </div>
+    <div *ngIf="claimStatus" class="claim-status-result">
+      <h3 class="claim-status-subtitle">Claim Status</h3>
+      <div class="claim-status-info">
+        <div class="claim-status-item">
+          <span class="claim-status-label">Policy Number:</span>
+          <span class="claim-status-value">{{claimStatus.policy_number}}</span>
+        </div>
+        <div class="claim-status-item">
+          <span class="claim-status-label">Description:</span>
+          <span class="claim-status-value">{{claimStatus.description}}</span>
+        </div>
+        <div class="claim-status-item">
+          <span class="claim-status-label">Damage Amount:</span>
+          <span class="claim-status-value">{{claimStatus.damage_amount | currency}}</span>
+        </div>
+        <div class="claim-status-item">
+          <span class="claim-status-label">Status:</span>
+          <span class="claim-status-value" [ngClass]="{'status-pending': claimStatus.status === 'Pending', 'status-approved': claimStatus.status === 'Approved', 'status-rejected': claimStatus.status === 'Rejected'}">
+            {{claimStatus.status}}
+          </span>
+        </div>
+      </div>
+    </div>
+  </div>

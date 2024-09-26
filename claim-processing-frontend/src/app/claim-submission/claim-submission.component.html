@@ -1,7 +1,20 @@
-<h2>Submit a Claim</h2>
-<input type ="file" (change)="onFileSelected($event)">
-<button (click)="onSubmit()" [disabled]="!selectedFile">Submit Claim</button>
-<div *ngIf = "submissionResult">
-    <h3>Claim Submitted Successfully</h3>
-    <p>Claim ID : {{submissionResult.id}}</p>
-</div>
+<div class="claim-submission-container">
+    <h2 class="claim-submission-title">Submit a Claim</h2>
+    <div class="claim-submission-form">
+      <div class="file-input-wrapper">
+        <input type="file" id="fileInput" (change)="onFileSelected($event)" class="file-input" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+        <label for="fileInput" class="file-input-label">
+          <span class="file-input-text">{{ selectedFile ? selectedFile.name : 'Choose a file' }}</span>
+          <span class="file-input-button">Browse</span>
+        </label>
+      </div>
+      <button (click)="onSubmit()" [disabled]="!selectedFile" class="submit-button" [ngClass]="{'submit-button-disabled': !selectedFile}">
+        Submit Claim
+      </button>
+    </div>
+    <div *ngIf="submissionResult" class="submission-result">
+      <div class="success-icon">✓</div>
+      <h3 class="submission-result-title">Claim Submitted Successfully</h3>
+      <p class="claim-id">Claim ID: <span>{{submissionResult.id}}</span></p>
+    </div>
+  </div>
